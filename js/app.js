@@ -65,10 +65,10 @@ const createNavigation = () => {
     // create an list element without attributes
     const li = createElement("li");
     // create anchor element with attributes
-    const a = createElement("a", {"href": `#section${i+1}`});
-    // modify created elements and append it to the navbar list   
-    a.className = "menu__link";
+    const a = createElement("a", {"href": `#section${i+1}`, "class" : "menu__link"});
+    //add text to the anchor
     a.textContent = `section ${i+1}`;
+    // append anchor to list element and then append listelement to navbar list
     li.appendChild(a);
     ul.appendChild(li);
   }
