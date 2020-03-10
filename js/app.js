@@ -27,7 +27,7 @@ const ul = document.querySelector('#navbar__list');
 */
 
 // A HTML Element Factory Function
-const createElement = (element, attributes) => {
+const createElements = (element, attributes) => {
     const element_without = document.createElement(element);
     if (!(attributes === undefined)) {
         const elements_with_attributes = createAttributes(element_without, attributes);
@@ -56,25 +56,7 @@ const createAttributes = (element, attributes) => {
     return element; 
 };
 
-// Create the Navigation
-const createNavigation = () => {
-  //creating a nodelist of all sections
-  const section = document.querySelectorAll('section');
-  // iterate through over the amount of sections that exist
-  for (let i = 0; i < section.length; i++){
-    // create an list element without attributes
-    const li = createElement("li");
-    // create anchor element with attributes
-    const a = createElement("a", {"href": `#section${i+1}`, "class" : "menu__link"});
-    //add text to the anchor
-    a.textContent = `section ${i+1}`;
-    // append anchor to list element and then append listelement to navbar list
-    li.appendChild(a);
-    ul.appendChild(li);
-  }
-}
 
-createNavigation();
 
 
 
@@ -86,6 +68,25 @@ createNavigation();
 
 // build the nav
 
+// Create the Navigation
+const createNavigation = () => {
+  //creating a nodelist of all sections
+  const section = document.querySelectorAll('section');
+  // iterate through over the amount of sections that exist
+  for (let i = 0; i < section.length; i++){
+    // create an list element without attributes
+    const li = createElements("li");
+    // create anchor element with attributes
+    const a = createElements("a", {"href": `#section${i+1}`, "class" : "menu__link"});
+    //add text to the anchor
+    a.textContent = `section ${i+1}`;
+    // append anchor to list element and then append listelement to navbar list
+    li.appendChild(a);
+    ul.appendChild(li);
+  }
+}
+
+createNavigation();
 
 // Add class 'active' to section when near top of viewport
 
