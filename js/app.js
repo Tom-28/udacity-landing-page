@@ -18,8 +18,7 @@
  * 
 */
 
-const ul = document.querySelectorAll('#navbar__list');
-console.log(ul);
+const ul = document.querySelector('#navbar__list');
 
 /**
  * End Global Variables
@@ -57,7 +56,25 @@ const createAttributes = (element, attributes) => {
     return element; 
 };
 
-createAttributes('<a>',{class:"listItem", href:"https://www.google.de"});
+// Create the Navigation
+const createNavigation = () => {
+  //creating a nodelist of all sections
+  const section = document.querySelectorAll('section');
+  // iterate through over the amount of sections that exist
+  for (let i = 0; i < section.length; i++){
+    // create an list element without attributes
+    const li = createElement("li");
+    // create anchor element with attributes
+    const a = createElement("a", {"href": `#section${i+1}`});
+    // modify created elements and append it to the navbar list   
+    a.className = "menu__link";
+    a.textContent = `section ${i+1}`;
+    li.appendChild(a);
+    ul.appendChild(li);
+  }
+}
+
+createNavigation();
 
 
 
