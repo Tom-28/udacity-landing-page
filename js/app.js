@@ -74,6 +74,7 @@ const createNavigation = () => {
   }
 }
 
+
 createNavigation();
 
 // Add class 'active' to section when near top of viewport
