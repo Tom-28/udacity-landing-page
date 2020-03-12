@@ -47,6 +47,23 @@ const createElements = (element, attributes) => {
     return element_new; 
 };
 
+// helper function, that calculates the distance from the element to top of the document
+const element_location = (element) => {
+  let bodyTop = document.body.getBoundingClientRect().y; 
+  let elementTop = element.getBoundingClientRect().y; 
+  let distance = elementTop - bodyTop;
+  return distance;
+}
+
+//  helper function, that returns an array with the distances of all sections, they have to the top
+const get_section_points = () => {
+  const section_elements = document.querySelectorAll("section");
+  const section_top_points = [];
+  for (let i = 0; i < section_elements.length; i++){
+    section_top_points.push(element_location(section_elements[i]));
+  }
+  return section_top_points;
+}
 
 /**
  * End Helper Functions
@@ -54,9 +71,7 @@ const createElements = (element, attributes) => {
  * 
 */
 
-// build the nav
-
-// Create the Navigation
+// Build the Navigation
 const createNavigation = () => {
   //creating a nodelist of all sections
   const section = document.querySelectorAll('section');
@@ -74,14 +89,22 @@ const createNavigation = () => {
   }
 }
 
+// Give active state to sections aacording to scroll bahavior
+const activate_state_on_scroll = () => {
+  const sections = document.querySelectorAll("section");
+  const section_points = get_section_points();
 
-createNavigation();
-
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
+  for (let i = 0; i < section_points.length; i++){
+    const links = document.querySelectorAll('.menu__link');
+    if(window.scrollY >= section_points[i] && !(window.scrollY > section_points[i+1])){
+      links[i].classList.add('activatedLink');
+      sections[i].classList.add('your-active-class');
+    }else{
+      links[i].classList.remove('activatedLink');
+      sections[i].classList.remove('your-active-class');
+    }
+  }
+}
 
 /**
  * End Main Functions
@@ -89,10 +112,9 @@ createNavigation();
  * 
 */
 
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
+// Initialize Menu
+window.addEventListener("DOMContentLoaded", createNavigation);
+// Give state to active sections
+window.addEventListener("scroll", activate_state_on_scroll);
 
 

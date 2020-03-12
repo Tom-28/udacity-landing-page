@@ -84,6 +84,7 @@ section {
     font-weight: bold;
     text-decoration: none;
     color: #000;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .navbar__menu .menu__link:hover {
@@ -224,4 +225,10 @@ section.your-active-class .landing__container::after {
 		           translate(-1em) 
 		           rotate(-360deg);
 	}
+}
+
+/* classes for activated links */
+
+.activatedLink {
+    background-color:#00BFA5;
 }
